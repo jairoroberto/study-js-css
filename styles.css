@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary-100: #F4FAFA;
+    --primary-300: #DFEBEB;
+    --text-color: #10131C;
+    --border-radius: 5px;
+    --border-radius-wrap: 8px;
+  
+    font-size: 62.5%;
+  }
+  
+  a {
+    color: var(--text-color);
+  }
+  
+  body {
+    background-color: var(--primary-300);
+    color: var(--text-color);
+  
+    font-size: 1.6rem;
+  
+    display: grid;
+    place-items: center;
+    height: 100vh;
+  }
+  
+  body * {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  form {
+    background-color: white;
+  
+    width: min(73rem, 87%);
+    margin: 2rem auto;
+  
+    padding: 9rem;
+    border-radius: var(--border-radius-wrap);
+  
+    box-shadow: 0 0 4.8rem rgb(0 0 0 / .1);
+  }
+  
+  form * {
+    font-size: 1.4rem;
+  }
+  
+  fieldset {
+    border: 0;
+  }
+  
+  fieldset legend {
+    font-size: 3.2rem;
+    font-family: "Libre Baskerville", serif;
+  }
+  
+  /* radio */
+  .radio-wrapper {
+    border-radius: var(--border-radius);
+    background-color: var(--primary-100);
+    border:1px solid #BBC1C1;
+    padding: 2.4rem;
+  }
+  
+  .radio-wrapper > div {
+    display: flex;
+    gap: .8rem;
+  }
+  
+  .radio-wrapper input[type="radio"] {
+    appearance: none;
+  
+    border: 1px solid #BBC1C1;
+    height: 2.8rem;
+    width: 2.8rem;
+    border-radius: 50%;
+  
+    background-color: white;
+  }
+  
+  .radio-wrapper input[type="radio"]:checked {
+    background-image: radial-gradient(white 35%, black 40%);
+  }
+  
+  .radio-wrapper:not(:has(:checked)) {
+    opacity: .6;
+  }
+  
+  .radio-wrapper label {
+    font-size: 2rem;
+  }
+  
+  .radio-wrapper p {
+    margin-top: 1rem;
+    padding-left: 3.8rem;
+  }
+  
+  legend + .radio-wrapper {
+    margin-top: 6rem;
+  }
+  
+  .radio-wrapper + .radio-wrapper,
+  .checkbox-wrapper + .checkbox-wrapper {
+    margin-top: 2.4rem;
+  }
+  
+  /* checkbox */
+  
+  .checkbox-wrapper {
+    display: flex;
+    gap: .8rem;
+  
+    padding-inline: 2.2rem;
+  }
+  
+  
+  .checkbox-wrapper input[type="checkbox"] {
+    appearance: none;
+  
+    flex-shrink: 0;
+  
+    width: 2.8rem;
+    height: 2.8rem;
+    
+    border: 1px solid #6B7473;
+    border-radius: .6rem;
+  
+    position: relative;
+  }
+  
+  .checkbox-wrapper input[type="checkbox"]:focus {
+    outline: 1px solid black;
+  }
+  
+  .checkbox-wrapper input[type="checkbox"]:checked::before {
+    content: "✓";
+    font-size: 2.4rem;
+    position: absolute;
+    top: -0.6rem;
+    left: .4rem;
+  }
+  
+  .checkbox-wrapper label {
+    margin-top: .4rem;
+  }
+  
+  .radio-wrapper + .checkbox-wrapper {
+    margin-top: 4.8rem;
+  }
+  
+  
+  /* button */
+  button {
+    margin-top: 5.8rem;
+  
+    width: 100%;
+  
+    background-color: #130F28;
+    padding-block: 2rem;
+  
+    color: white;
+  
+    border: 0;
+  
+    transition: background .2s;
+  }
+  
+  button:hover {
+    background-color: #2d235d;
+    cursor: pointer;
+  
+  }
+  
+  small {
+    text-align: center;
+    display: block;
+    margin-top: 2.8rem;
+  }
+
+  .vlr-mem{
+    padding:15px 0px;
+    color:#cc0000;
+    font-size: 1.8rem;
+  }
+
+  .c-box-check{
+    display: flex;
+    flex-direction: row;  
+  }
+
+/* CUSTOM CHECK BOX by JAIRO */
+
+.c-checkbox-custom {
+  appearance: none;
+}
+
+.c-checkbox-custom-label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.c-checkbox-custom-label:before{
+  border:1px solid #666;
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+}
+
+.c-checkbox-custom:checked + .c-checkbox-custom-label:before {
+  border:1px solid #cc0000;
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #cc0000;
+}
+
+.c-checkbox-custom:checked + .c-checkbox-custom-label:after {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 7px;
+  border: 1px solid #fff;
+  border-width: 0px 2px 2px 0;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  margin: 0px 15px 5px 5px;
+  position: absolute;
+  left: 3px;
+  top: 5px;
+}
+
+.line-sec{
+  border:none;
+  border-bottom: 1px dashed #ccc;
+  margin: 20px 0px;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 3rem;
+  width: 60%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 1px 3px 1rem rgb(0 0 0 / 23%);
+} 
+
+.modal-content p{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+}
+
+/* The Close Button */
+.close {
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: -50px;
+  transition: all .2s ease;
+  background: rgb(255 255 255 / 9%);
+  padding: 0 8px;
+  border-radius: 5px;
+  height: 35px;
+  line-height: 1.3;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.input-text{
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1.6rem;
+  font-size: 1.4rem;
+  color: #333;
+  outline:none;
+  transition: all .2s ease;
+}
+
+.input-text:focus{
+  border: 1px solid #00b835;
+  transition: all .2s ease;
+}
+
+.lb-inner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

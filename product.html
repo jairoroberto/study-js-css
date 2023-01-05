@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Desafio #03 - Florin Pop</title>
+</head>
+<body>
+
+  <!-- The button that opens the modal -->
+  <button id="openModalBtn" style="max-width:300px; margin: 3rem auto ">
+    Open Modal
+  </button>
+
+  <form >
+
+    <fieldset>
+      <legend>Choose a trial plan</legend>
+      
+      <!-- SÓ PARA MOSTRAR O LOCALSTORAGE -->
+      <p class="vlr-mem">Página 01</p>
+
+      <label class="lb-inner" for="entradaDados">Nome</label>
+      <input type="text" name="" class="input-text" id="entradaDados" value="Jairo">
+      <br><br>
+      <!-- / SÓ PARA MOSTRAR O LOCALSTORAGE -->
+
+      <div class="radio-wrapper">
+
+       
+        <div>
+          <input type="radio" name="plan" id="plan1" value="plan1">
+          <label for="plan1">Standard</label>
+        </div>
+        
+
+         
+        
+        <p>
+          5 TB of space ipsum dolor sit amet consectetur, adipisicing elit. sit amet consectetur, adipisicing elit.
+        </p>
+      </div>
+
+      <div class="radio-wrapper">
+        <div>
+          <input type="radio" name="plan" id="plan2" value="plan2" checked>
+          <label for="plan2">Advanced</label>
+        </div>
+        <p>
+          As much space as you ipsum sit amet consectetur, adipisicing elit. sit amet consectetur, adipisicing elit. dolor sit amet consectetur, adipisicing elit.
+        </p>
+      </div>
+
+      <div class="checkbox-wrapper">
+        <input type="checkbox" name="terms" id="terms" checked>
+        <label for="terms">I agree with <a href="#">terms and conditions</a> tetur, adipisicing elit. sit amet consectetur, adipisicing elit. dolor sit amet consectetur, adipisicing elit.
+        tetur, adipisicing elit. sit amet consectetur, adipisicing 
+        </label>
+      </div>
+
+      <div class="checkbox-wrapper">
+        <input type="checkbox" name="mailing" id="mailing">
+        <label for="mailing">I'd like to received mailing messages</label>
+      </div>
+
+      <button type="submit">Start free trial</button>
+      <small>No credit card needed</small>
+
+      <hr class="line-sec">
+
+      <div class="c-box-check">
+        <input type="checkbox" class="c-checkbox-custom" name="" id="a">
+        <label class="c-checkbox-custom-label" for="a">Label-box-check</label>
+      </div>
+
+    </fieldset>
+
+  </form>
+
+
+  <!-- The modal element -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu dapibus nulla. Vestibulum ullamcorper gravida lorem ac luctus. Vestibulum bibendum mi nisl, bibendum rhoncus ante tempor non. Donec ut egestas nibh. In hac habitasse platea dictumst. Nulla quis sapien iaculis tellus elementum tempor. Phasellus sit amet eros vitae lacus euismod molestie. Pellentesque rutrum massa auctor eros bibendum egestas vitae sit amet elit. Duis ultricies neque in dolor lobortis feugiat. Etiam vel erat sit amet diam hendrerit fermentum vel luctus augue. Nulla lacinia ornare elit eu egestas. Nam felis sapien, commodo sit amet placerat id, commodo eget turpis. Mauris porta non risus sit amet sollicitudin. Curabitur mattis tortor nec dolor vehicula, ut luctus ligula eleifend. In massa odio, scelerisque at orci a, gravida volutpat eros. Nulla molestie augue et orci tristique, quis rhoncus ipsum fringilla.</p>
+  <p>Phasellus ac elementum ligula. Phasellus porttitor lectus neque, quis accumsan orci posuere sit amet. Quisque dictum risus in faucibus porttitor. Donec nunc ante, varius vitae pharetra ut, condimentum ac nisl. Maecenas ut nisi eu nisi elementum aliquam. Vivamus nisl tellus, feugiat ut leo ac, rhoncus imperdiet quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent quis accumsan nulla.</p>
+  </div>
+</div>
+
+
+
+
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("openModalBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+
+
+  // SETANDO VALORES NO LOCALSTORAGE
+  localStorage.setItem('meuGato', 'Tom');
+  localStorage.setItem('meuRato', 'Jerry');
+  localStorage.setItem('meuCachorro', 'Scooby');
+
+  //PEGANDO O VALOR DO FORM
+  const entradaDados = document.querySelector('#entradaDados');
+  
+
+  localStorage.setItem('meuHumano', entradaDados);
+
+  const arr = [];
+
+  // PEGANDO VALORES DO LOCALSTORAGE
+  arr.push(localStorage.getItem('meuGato'));
+  arr.push(localStorage.getItem('meuRato'));
+  arr.push(localStorage.getItem('meuCachorro'));
+  
+
+  entradaDados.value =  arr[0];
+
+  //arr = [ 'Tom', 'Jerry', 'Scooby']
+
+  console.log(arr);
+
+  const boxMem = document.querySelector('.vlr-mem');
+  boxMem.innerHTML = '';
+
+  arr.map((item, index) => {
+    //console.log(item, index);
+    //boxMem.innerHTML += item + '<br>';
+  })
+  
+
+</script>
+
+</body>
+</html>
