@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Mega Sena</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Nunito', sans-serif !important;
+        }
+        body{
+            background-color: #fff !important;
+            display: block;
+            margin-bottom: 3rem;
+        }
+
+        .lista{
+            background-color: #f2f2f2;
+            list-style-type: none;
+            margin: 0;
+            border-radius: 3px;     
+            width: 220px;  
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .lista li{
+            border-bottom:1px solid #e9e9e9;
+            padding: 10px 0;
+            padding: 8px 30px;
+            text-align: center;
+            transition: all 0.8s ease;
+        }
+
+        .lista li:hover{
+            background-color: #7220ff;
+            color: #fff;
+            box-shadow: rgba(15, 15, 15, 0.016) 0px 0px 0px 1px, rgba(15, 15, 15, 0.03) 0px 3px 6px, rgba(15, 15, 15, 0.06) 0px 9px 24px;
+            border-radius: 0px;
+            transition: all 0.2s ease;
+        }
+
+        .lista li:is(:first-child){
+            border-radius: 3px 3px 0px 0px;
+        }
+
+        .lista li:is(:last-child){
+            border-bottom: none;
+            border-radius: 0 0 3px 3px;
+        }
+
+        .title{
+            color: #7220ff;
+            text-align: center;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #e4e4e4;
+            border-radius: 0;
+        }
+        
+        code{
+            color: crimson;
+            font-size: 2rem;
+            background-color: #e9e9e9;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        main {
+            background: #fff;
+            padding: 1rem;
+            min-width: 100%;
+            min-height: 200px;
+        }
+
+        #wrap {
+            width: calc(100% - 4rem);
+            min-height: 160px;
+            border: 1px solid #ddd;
+            margin: 2rem;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        #megasena-buttons {
+            display: flex;
+            max-width: 800px;
+            justify-content: space-around;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        #megasena-board{
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #megasena-board ul{
+            display: flex;
+            flex-wrap:wrap;
+            list-style-type: none;
+            justify-content: center;
+        }
+        #megasena-board ul li:nth-child(10){
+            _background: #ccc !important;
+        }
+
+        #megasena-board ul li:is(:nth-child(10n)){
+            _background: #ffcc20;
+            _flex-wrap:wrap;
+        }
+
+        #megasena-board ul li{
+            width: 40px;
+            height: 40px;
+            background: #f2f2f2;
+            margin:2px;
+            display: flex;
+            border-radius: 3px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #megasena-board ul li:hover{
+            background-color: #7220ff;
+            cursor: pointer;
+            color:#fff;
+        }
+
+        #megasena-board ul li.active{
+            background-color: #7220ff;
+            color: #fff;
+            transition: all 0.6s ease;
+        }
+
+        #megasena-buttons button{
+            max-width: 200px;
+            margin: 3rem auto !important;
+            display: flex;
+            justify-content: center;
+            border-radius: 5px !important;
+            background-color: #7220ff;
+            transition: all 0.1s ease;
+        }
+
+        #megasena-buttons button:hover{
+            filter: brightness(1.2);
+            transition: all 0.6s ease;
+        }
+
+        p.text-center{
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .btn-save{
+            background-color: #00b836 !important;
+            color: #fff;
+            border-radius: 5px;
+            padding: 2.0rem 1rem;
+            margin: 0.5rem;
+            transition: all 0.6s ease;
+        }
+        .btn-new{
+            background-color: transparent !important;
+            color: #7220ff;
+            border-radius: 5px;
+            padding: calc(2rem - 2px) calc(1rem - 2px);
+            margin: 0.5rem;
+            transition: all 0.6s ease;
+            border:2px solid #7220ff;
+        }
+        .btn-new:hover{
+            background-color: #f2f2f2 !important;
+            color: #5713cd !important;
+            transition: all 0.6s ease;
+        }
+        .error {
+            color: crimson;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 10px !important;
+            font-weight: bold;
+            display: flex;
+            margin: 0 auto;
+            max-width: 300px;
+            justify-content: center;
+            border: 1px solid #fab3c1;
+            border-radius: 4px;
+            padding: 0px;
+            background: rgb(255 205 210 / 45%);
+            padding: 10px;
+            transition: all 0.2s ease;
+            text-indent: -200px;
+            overflow: hidden;
+        }
+        .error.animate{
+            transition: all 0.6s ease;
+            text-indent: 0;
+            visibility: visible !important;
+        }
+
+        .disabled{
+            background-color: #ccc !important;
+            cursor: not-allowed;
+            transition: all 0.6s ease;
+        }
+        .enabled{
+            background-color: #00b835 !important;
+            transition: all 0.6s ease;
+        }
+
+        .svg-box{
+            width: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .svg-box fill{
+            fill: #003366;
+        }
+
+        #megasena-saved-games{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 300px;
+            color:#5713cd;
+            font-weight: bold;
+        }
+
+
+        @media (max-width: 768px) {
+            #megasena-board ul li{
+                _border-radius: 100px;
+            }
+
+            button{
+                width: 130px;
+                padding: 1.4rem 1rem;
+            }
+            .btn-save{
+                padding: 1.4rem 1rem;
+            }
+        }
+
+        
+
+        
+    </style>
+</head>
+<body>
+
+
+
+    <header>
+        <h1 class="title">DOM - MegaSena</h1>
+    </header>
+
+    <main>
+        <div id="megasena-board"></div>
+        <div id="megasena-buttons"></div>
+        <div id="megasena-saved-games"></div>
+        <div class="error"></div>
+    </main>
+    
+    
+
+    <div id="wrap">
+        <svg width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="#dddddd" stroke-width="2" fill="#f9f9f9" />
+        </svg>
+        <div class="svg-box">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="298" height="512" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 298 511.93">
+                <path fill-rule="nonzero" d="M70.77 499.85c-16.24 16.17-42.53 16.09-58.69-.15-16.17-16.25-16.09-42.54.15-58.7l185.5-185.03L12.23 70.93c-16.24-16.16-16.32-42.45-.15-58.7 16.16-16.24 42.45-16.32 58.69-.15l215.15 214.61c16.17 16.25 16.09 42.54-.15 58.7l-215 214.46z"/>
+            </svg>
+        </div>
+
+    </div>
+
+
+    <p class="text-center">Javascript</p>
+    <p class="text-center">CSS usando o <em>pseudo-element</em> <code>:is</code></p>
+
+    
+    <script>
+        wrap = document.getElementById('wrap');
+        ul = document.createElement('ul');
+        wrap.appendChild(ul);
+
+        for(i = 1; i <= 2; i++){
+            //console.log(i);
+            li = document.createElement('li');
+            li.textContent = `Item ${i}`;
+            ul.appendChild(li);
+            ul.classList.add('lista');
+        }
+        
+        // MEGA SENA JS
+
+        //var board = []
+        //var currentGame = [1, 5, 11, 13, 15, 27]
+        //var savedGames = [];
+
+        var errorMsg = document.querySelector('.error');
+        errorMsg.style.visibility = 'hidden';
+
+        var state = {
+            board : [],
+            currentGame : [],
+            savedGames : []
+        }
+        //console.log(state.board);
+       
+
+
+        // Iniciando a Função que chama outras funções  
+        function start(){
+            createBoard();
+            newGame();
+            //console.log("Criando o tabuleiro",state.board);
+        }
+
+        // Criando o HTML
+        function createBoard(){
+            state.board = [];
+            
+            for(var i = 1; i <= 60; i++){
+                state.board.push(i);
+            }
+        }
+
+        // Iniciando o Jogo
+        function newGame(){
+            resetGame();
+            render();
+            console.clear();
+        }
+
+        function render(){
+            renderBoard();
+            renderButtons();
+            renderSavedGame();
+        }
+
+
+
+        // Gerando os números 1 a 60
+        function renderBoard(){
+            var divBoard = document.querySelector('#megasena-board');
+            divBoard.innerHTML = '';
+
+            var ulNumbers = document.createElement('ul');
+            
+            for(var i = 0; i < state.board.length; i++){
+                var currentNumber = state.board[i];
+                //console.log(state.board);
+                var liNumber = document.createElement('li');
+                liNumber.textContent = currentNumber;
+                liNumber.addEventListener('click', handleNumberClick);
+                //console.log(currentNumber);
+      
+                ulNumbers.appendChild(liNumber);
+            }
+            divBoard.appendChild(ulNumbers);
+        }
+
+        // Click do Botão
+        function handleNumberClick(event){
+            var value = Number(event.currentTarget.textContent);
+            //console.log(value);
+
+            if(!isNumberInGame(value)){
+                if(state.currentGame.length === 6){
+                    //console.log('Ja tem 6 números');
+                    var limit = true;
+                    errorMsg.classList.add('animate');
+                    errorMsg.textContent = 'Você já selecionou 6 números';
+                }
+                else{
+                    event.currentTarget.classList.add('active');
+                    addNumberToGame(value);
+                    if(state.currentGame.length === 6){
+                        document.querySelector('.btn-save').classList.remove('disabled');
+                    }
+                }
+            }
+
+            else{     
+                removeNumberFromGame(value);
+                event.currentTarget.classList.remove('active');
+            }
+            console.log(state.currentGame);
+            console.log(state.currentGame.length);
+ 
+        }
+
+        // Criando os Botões
+        function renderButtons(){
+            var divButtons = document.querySelector('#megasena-buttons');
+            divButtons.innerHTML = '';
+
+            var buttonNewGame = createNewGameButton();
+            var buttonRandomGame = createRandomGameButton();
+            var buttonSaveGame = createSaveGameButton();
+
+            divButtons.appendChild(buttonNewGame);
+            divButtons.appendChild(buttonRandomGame);
+            divButtons.appendChild(buttonSaveGame);
+            
+        }
+
+        // Criando o Botão Aleatório
+        function createRandomGameButton(){
+            var button = document.createElement('button');
+            button.textContent = 'Jogo Aleatório';
+
+            button.addEventListener('click', randomGame); 
+            return button;
+        }
+
+        // Criando o Botão Novo Jogo
+        function createNewGameButton() {
+            var button = document.createElement('button');
+            button.textContent = 'Novo Jogo';
+            button.addEventListener('click', newGame);
+            button.classList.add('btn-new');
+            return button;
+        }
+
+        // Criando o Botão Salvar Jogo
+        function createSaveGameButton() {
+            var button = document.createElement('button');
+            button.textContent = 'SALVAR JOGO';
+            button.classList.add('btn-save','disabled');
+            button.addEventListener('click', saveGame);
+            return button;
+        }
+
+        // Renderizando e Salvando o Jogo
+        function renderSavedGame(){
+            //
+        }
+
+        // Adicionando números ao jogo
+        function addNumberToGame(numberToAdd){
+            if(numberToAdd < 1 || numberToAdd > 60){
+                console.error('Número inválido:', numberToAdd);
+                return;
+            }
+
+            if(state.currentGame.length >= 6){
+                console.error('Jogo já está completo');
+                return;
+            }
+
+            if(isNumberInGame(numberToAdd)){
+                console.error('Número já está no jogo:', numberToAdd);
+                return;
+            }
+            
+            state.currentGame.push(numberToAdd);
+        }
+
+        // Removendo números do jogo
+        function removeNumberFromGame(numberToRemove){
+            if(numberToRemove < 1 || numberToRemove > 60){
+                console.error('Número inválido no Remove:', numberToRemove);
+                return;
+            }
+            var newGame = [];
+            for(var i = 0; i < state.currentGame.length; i++){
+                var currentNumber = state.currentGame[i];
+                //console.log(currentNumber);
+                if(currentNumber === numberToRemove){
+                    continue;
+                }
+                newGame.push(currentNumber);
+            }
+            state.currentGame = newGame;
+        }
+        
+        // Validando se o número já está no jogo - para não Repetir
+        function isNumberInGame(numberToCheck){
+            return state.currentGame.includes(numberToCheck);
+        }   
+
+        // Salvando o jogo
+        function saveGame(){
+            if(!isGameComplete()){
+                console.error('Jogo não está completo');
+                return;
+            }
+            state.savedGames.push(state.currentGame);
+            newGame();
+            //state.currentGame = [];
+            console.log('Jogo Salvo');
+        }
+
+        // Validando se o jogo está completo com 6 números
+        function isGameComplete(){
+            return state.currentGame.length === 6;
+        }
+
+        // Resetando o jogo
+        function resetGame(){
+            state.currentGame = [];
+            document.querySelector('#megasena-saved-games').textContent = '';
+            var numbers = document.querySelectorAll('li');
+            for(var i = 0; i < numbers.length; i++){
+                numbers[i].classList.remove('active');
+            }
+
+        }
+
+        // Randomizando o jogo
+        function randomGame(){
+            resetGame();
+
+            while(!isGameComplete()){
+                var randomNumber = Math.ceil(Math.random() * 60);
+                addNumberToGame(randomNumber);
+            }
+            console.log(state.currentGame);
+
+            divRandom = document.querySelector('#megasena-saved-games');
+            divRandom.textContent = `Random Nº's [ ${state.currentGame} ]`;
+            
+        }
+
+        start();
+
+    
+        
+    </script>
+</body>
+</html>

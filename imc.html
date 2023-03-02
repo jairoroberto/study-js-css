@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC - DOM</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --color-purple:rgb(167, 20, 190);
+        }
+
+        .general-box{
+            min-width: 100%;
+            min-height: 30vh;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(251, 251, 250);
+            border-radius: 4px;
+            border: 1px dashed #ccc;
+        }
+
+        .card-shadow {
+            user-select: none;
+            transition: all 0.2s ease 0s;
+            cursor: pointer;
+            display: flex;
+            border-radius: 6px;
+            padding: 15px 24px 15px 15px;
+            background: white;
+            box-shadow: rgba(15, 15, 15, 0.016) 0px 0px 0px 1px, rgba(15, 15, 15, 0.03) 0px 3px 6px, rgba(15, 15, 15, 0.06) 0px 9px 24px;
+            align-items: center;
+            font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        .card-shadow:hover{
+            background:rgba(55, 53, 47, 0.08);
+            box-shadow: none;
+        }
+
+        .card-shadow svg{
+            margin-right: 0.5rem;
+        }
+
+        body{
+            line-height: 1.5;
+            color: #666;
+            padding: 3rem 15%;
+            background-color: #fff !important;
+        }
+        h1{
+            font-size: 3rem;
+            color: var(--color-purple);
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--color-purple);
+            display: flex;
+            align-items: center;
+        }
+
+        #result{
+            padding: 0.5rem;
+            font-size: 1.6rem;
+            color:#000;
+            background: #fff;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        *{
+            font-family: 'Nunito', sans-serif !important;
+        }
+
+        .wrap{
+            background-color: #f2f2f2;
+            padding: 4rem;
+            border-radius: 5px;
+            border:1px solid #ddd;
+            height: auto;
+            max-width: 50%;
+        }
+
+        .form-group{
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label{
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            min-width: 20%;
+            text-align: right;
+            padding-right: 0.5rem;
+        }
+
+        .form-group input{
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 0.8rem 0.5rem;
+            width:calc(70% - 0.5rem);
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus{
+            outline: none;
+            border-color: var(--color-purple);
+            transition: all 0.2s ease;
+        }
+
+        .wrap .btn-calc{
+            border-radius: 4px;
+            margin-top: 1rem;
+            background-color: var(--color-purple);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        /* hover and focus together */
+        .wrap .btn-calc:is(:focus, :hover){
+            border-radius: 4px;
+            margin-top: 1rem;
+            background-color: rgb(139, 9, 137) !important
+        }
+
+        @media(max-width:768px){
+            .wrap{
+                max-width: 100%;
+            }
+            .form-group{
+                display: flex;
+                flex-direction: column;
+            }
+            .form-group input{
+                width: 100%;
+            }
+            .form-group label{
+                text-align: left;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="wrap"> 
+        <h1>IMC <small id="result"></small></h1>
+        <div class="form-group">
+            <label for="input-weight">Peso</label>
+            <input type="number" id="input-weight" step="0.1" name="peso" placeholder="Digite seu peso">
+        </div>
+        <div class="form-group">
+            <label for="input-height">Altura</label>
+            <input type="number" id="input-height" step="0.1" name="altura" placeholder="Digite sua altura">
+        </div>
+        <button type="button" class="btn-calc">Calcular IMC</button>
+    </div>
+
+    
+    <div class="general-box">
+        <div class="card-shadow">
+            <svg viewBox="0 0 22 22" class="circlePlus" style="width: 30px; height: 100%; display: block; fill: rgb(167, 130, 195); flex-shrink: 0; backface-visibility: hidden; margin-top: 3px;"><path d="M11 22C17.0326 22 22 17.0326 22 11C22 4.97795 17.0221 0 10.9895 0C4.9674 0 0 4.97795 0 11C0 17.0326 4.9674 22 11 22ZM5.83221 11.0105C5.83221 10.3461 6.30681 9.87152 6.96069 9.87152H9.88207V6.95014C9.88207 6.30681 10.3461 5.83221 10.9895 5.83221C11.6539 5.83221 12.1285 6.30681 12.1285 6.95014V9.87152H15.0499C15.6932 9.87152 16.1678 10.3461 16.1678 11.0105C16.1678 11.6539 15.6932 12.1179 15.0499 12.1179H12.1285V15.0499C12.1285 15.6932 11.6539 16.1572 10.9895 16.1572C10.3461 16.1572 9.88207 15.6932 9.88207 15.0499V12.1179H6.96069C6.30681 12.1179 5.83221 11.6539 5.83221 11.0105Z"></path></svg>
+            <span>Lorem ipsum dolor sit amet.</span>
+        </div>
+    </div>
+
+    <script>
+        /* DOM Document Object Model */
+        function start(){
+            var buttonCalculateImc = document.querySelector('.btn-calc');
+            buttonCalculateImc.addEventListener('click', handleButtonClick);
+            const inputWeight = document.querySelector('#input-weight');
+            const inputHeight = document.querySelector('#input-height');
+
+            inputWeight.addEventListener('input', handleButtonClick);
+            inputHeight.addEventListener('input', handleButtonClick);
+
+            handleButtonClick();
+        }
+
+
+        function calculateImc(weight, height){
+            return weight / (height * height);
+        }
+
+        function handleButtonClick(){
+            const inputWeight = document.querySelector('#input-weight');
+            const inputHeight = document.querySelector('#input-height');
+            const imcResult = document.querySelector('#result');
+
+            const weight = Number(inputWeight.value);
+            const height = Number(inputHeight.value);
+
+            const imc = calculateImc(weight, height);  
+            //result.textContent =  parseFloat(imc).toFixed(4);
+            result.textContent =  imc.toFixed(2).replace('.', ',');
+            //imcResult.textContent =  imc;
+        }
+
+        start();
+        
+    </script>
+
+
+</body>
+</html>

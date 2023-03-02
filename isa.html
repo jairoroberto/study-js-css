@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- CSS Cascating Sheet Style = Folha de Estilo Cascata -->
+        <style>
+
+            h1{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 36px;
+            }
+
+            .color-primary{
+                color: #cc0000;
+            }
+
+            .color-secondary{
+                color: #00b835;
+            }
+
+            .size50{
+                font-size: 50px;
+            }
+            
+            .font-times{
+                font-family: 'Times New Roman', Times, serif;
+            }
+
+            .bg-green{
+                background-color: #00b845;
+            }
+            .bg-yellow{
+                background-color: #ffcc20;
+            }
+
+            .w-50p{
+                width: 50%;
+            }
+
+            .button{
+                padding: 20px;
+                margin-bottom:100px;
+                text-align: center;
+                border-radius: 6px;
+                color:black;
+                border: none;
+                transition: all 0.1s ease-in-out;
+            }
+
+            .button:hover{
+                background-color: #00b845;
+                color: white;
+                transition: all 0.6s ease-in-out;
+                cursor:pointer;
+                padding: 30px;
+            }
+
+        </style>
+
+
+    </head>
+    <body>
+
+        <!-- CSS inline -->
+        <h1 class="color-primary font-times size50">Isa - UX</h1>
+        <h1 class="color-secondary">Jairo - UX</h1>
+
+        <button class="button w-50p bg-yellow">
+            User Interface - Clique Me
+        </button>
+
+        <br>
+
+        <a href="http://www.google.com">google</a>
+
+        <script>
+
+            btn = document.querySelector('.button');
+            btn.addEventListener('click', function(){
+                alert('Legal! Clicou no botão');
+            })
+            
+        </script>
+
+    </body>
+</html>

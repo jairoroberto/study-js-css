@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+
+    <title>XP Estudos</title>
+</head>
+<body>
+    <section class="wrap">
+        <header>
+            <small>header</small>
+        </header>
+
+        <main>
+            <h2>Javascript Minicamp XP</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, excepturi.</p>
+        </main>
+    
+        <div class="box">
+            <h3>Box</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, excepturi.</p>
+        </div>
+
+        <footer><small>Footer</small></footer>
+
+    </section>
+
+
+    <script>
+        //console.log('Hello World');
+        var abacate = 2;
+        var banana = 3;
+        var total = abacate + banana;
+
+        // Variáveis :: string, number, boolean
+
+        // String
+        var modelo = 'Gol';
+        var marca = "Volkswagen";
+
+        // Number
+        var ano = 2021;
+        var preco = 20100.14;
+
+        //boolean
+        var ipvaPago = true;
+        var seguroPago = false;
+
+        console.log('O modelo do carro é: ' + modelo);
+        console.log('A marca do carro é: ' + marca);
+        console.log('O ano do carro é: ' + ano);
+        console.log('O preço do carro é: ' + preco);
+        console.log('O IPVA está pago? ' + ipvaPago);
+        console.log('O seguro está pago? ' + seguroPago);
+
+
+ 
+        //console.log("abc");  
+
+        /* 1, 2, 5  */
+        function numeroPrimo(numero){
+            var resultado = true;
+            for(var i = 2; i < numero; i++){
+                if(numero % i == 0){
+                    resultado = false;
+                    console.log(numero + ": Não é primo");
+                    break;
+                }
+                else{
+                    console.log(numero + ": Este número é  [[[[ PRIMO ]]]]");
+                    
+                }
+            }
+            return resultado;
+            document.querySelector('.box').innerHTML  = 'Jairo';
+                     
+        }
+
+        //numeroPrimo(3); // true
+
+        //---
+        // img = peso / (altura * altura)
+        function imc(peso, altura){
+            var imc = peso / (altura * altura);
+            
+
+            if(imc < 18.5){
+                console.log("Abaixo do Peso");
+            } else if(imc >= 18.5 && imc < 25) {
+                console.log("Peso Normal");
+            } else if(imc >= 25 && imc < 30){
+                console.log("Sobrepeso");
+            } else if(imc >= 30 && imc< 35){
+                console.log("Obesidade Grau I");
+            } else if(imc >= 35 && imc < 40){
+                console.log("Obesidade Grau II");} 
+            else {
+                console.log("Obesidade Grau III ou Mórbida");
+            }   
+            return imc;
+        }
+
+        console.log("------------------------------");
+        console.log("------------------------------");
+        
+        var carros = ['Gol','Palio','Uno'];
+
+        //carros.pop('Uno');
+        //carros.push('Ferrari');
+
+        carros[carros.length] = 'Polo';
+        carros[carros.length] = 'Fox';
+
+        carros.unshift('Ferrari');
+        carros.shift('Ferrari');
+
+        for (var i = 0; i < carros.length; i++){
+            console.log(carros[i]);
+        }
+
+        console.log("------------------------------");
+
+        function palavraInversa(palavra){
+            var palavraInvertida = '';
+            for(var i = palavra.length - 1; i >= 0; i--){
+                palavraInvertida += palavra[i];
+            }
+            return palavraInvertida;
+        }
+
+        console.log("--------- BUSCA NR --------");
+
+        var lista = [19, 54, 18, 11, 47, 98, 36, 44, 87];
+     
+
+        function verificaNumero(numero){
+            var existe = false;
+            for(var i = 0; i < lista.length; i++){
+                if(lista[i] === numero){
+                    existe = true;
+                    break;
+                }
+            }
+            return existe;
+        }
+
+        //
+        for (var i = 0; i < 10; i++) { 
+            console.log("JavaScript"); 
+         } 
+
+    </script>
+    
+</body>
+</html>
